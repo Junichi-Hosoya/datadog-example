@@ -15,7 +15,8 @@ deploy:
 	    --allow-unauthenticated \
 	    --memory=2G \
 	    --set-env-vars=DD_API_KEY=${DATADOG_API_KEY} \
-	    --set-env-vars=DD_SITE=ap1.datadoghq.com
+	    --set-env-vars=DD_SITE=ap1.datadoghq.com \
+	    --set-env-vars=DD_LOGS_ENABLED=true
 
 build-local:
 	docker build -t ${IMAGE_TAG} .
@@ -25,4 +26,5 @@ run-local:
 	docker run --rm -p 8080:8080 \
 	    -e DD_API_KEY=${DATADOG_API_KEY} \
 	    -e DD_SITE=ap1.datadoghq.com \
+	    -e DD_LOGS_ENABLED=true \
 	    gcr.io/nobita-dev/datadog-example
